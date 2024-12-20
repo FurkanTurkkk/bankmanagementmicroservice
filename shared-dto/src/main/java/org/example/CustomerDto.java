@@ -1,6 +1,4 @@
-package com.bankmanagementmicroservice.customerservice.dto;
-
-import com.bankmanagementmicroservice.adressservice.dto.AddressDto;
+package org.example;
 
 import java.time.LocalDate;
 

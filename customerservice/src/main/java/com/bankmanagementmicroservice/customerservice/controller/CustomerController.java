@@ -1,7 +1,7 @@
 package com.bankmanagementmicroservice.customerservice.controller;
 
-import com.bankmanagementmicroservice.customerservice.dto.CustomerDto;
 import com.bankmanagementmicroservice.customerservice.service.CustomerService;
+import org.example.CustomerDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

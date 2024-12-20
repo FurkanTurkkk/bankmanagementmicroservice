@@ -1,7 +1,7 @@
 package com.bankmanagementmicroservice.adressservice.dtoconverter;
 
-import com.bankmanagementmicroservice.adressservice.dto.AddressDto;
 import com.bankmanagementmicroservice.adressservice.model.Address;
+import org.example.AddressDto;
 import org.springframework.stereotype.Component;
 
 @Component

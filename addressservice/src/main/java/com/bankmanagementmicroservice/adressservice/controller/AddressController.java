@@ -1,7 +1,7 @@
 package com.bankmanagementmicroservice.adressservice.controller;
 
-import com.bankmanagementmicroservice.adressservice.dto.AddressDto;
 import com.bankmanagementmicroservice.adressservice.service.AddressService;
+import org.example.AddressDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

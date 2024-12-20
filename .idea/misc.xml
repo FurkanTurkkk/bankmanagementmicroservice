@@ -10,7 +10,14 @@
         <option value="$PROJECT_DIR$/transactionservice/pom.xml" />
         <option value="$PROJECT_DIR$/adressservice/pom.xml" />
         <option value="$PROJECT_DIR$/addressservice/pom.xml" />
+        <option value="$PROJECT_DIR$/untitled/pom.xml" />
+        <option value="$PROJECT_DIR$/shared-dto/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/untitled/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="23" project-jdk-type="JavaSDK">

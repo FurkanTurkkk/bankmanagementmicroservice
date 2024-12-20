@@ -1,10 +1,11 @@
 package com.bankmanagementmicroservice.customerservice.service;
 
-import com.bankmanagementmicroservice.customerservice.dto.CustomerDto;
+
 import com.bankmanagementmicroservice.customerservice.dtoconverter.CustomerDtoConverter;
 import com.bankmanagementmicroservice.customerservice.exception.CustomerNotFoundException;
 import com.bankmanagementmicroservice.customerservice.model.Customer;
 import com.bankmanagementmicroservice.customerservice.repository.CustomerRepository;
+import org.example.CustomerDto;
 import org.springframework.stereotype.Service;
 
 @Service

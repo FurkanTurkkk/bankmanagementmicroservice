@@ -1,6 +1,5 @@
-package com.bankmanagementmicroservice.accountservice.dto;
+package org.example;
 
-import com.bankmanagementmicroservice.customerservice.dto.CustomerDto;
 
 import java.math.BigDecimal;
 

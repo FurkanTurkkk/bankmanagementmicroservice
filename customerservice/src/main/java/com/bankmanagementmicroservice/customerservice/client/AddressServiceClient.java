@@ -1,6 +1,5 @@
 package com.bankmanagementmicroservice.customerservice.client;
 
-import com.bankmanagementmicroservice.adressservice.dto.AddressDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

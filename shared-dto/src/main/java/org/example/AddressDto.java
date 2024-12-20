@@ -1,4 +1,4 @@
-package com.bankmanagementmicroservice.adressservice.dto;
+package org.example;
 
 public class AddressDto {
 

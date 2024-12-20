@@ -58,6 +58,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.example</groupId>
+			<artifactId>shared-dto</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
         <dependency>
             <groupId>com.bankmanagementmicroservice</groupId>
             <artifactId>addressservice</artifactId>

@@ -1,10 +1,10 @@
 package com.bankmanagementmicroservice.adressservice.service;
 
-import com.bankmanagementmicroservice.adressservice.dto.AddressDto;
 import com.bankmanagementmicroservice.adressservice.dtoconverter.AddressDtoConverter;
 import com.bankmanagementmicroservice.adressservice.exception.AddressNotFoundException;
 import com.bankmanagementmicroservice.adressservice.model.Address;
 import com.bankmanagementmicroservice.adressservice.repository.AddressRepository;
+import org.example.AddressDto;
 import org.springframework.stereotype.Service;
 
 @Service
