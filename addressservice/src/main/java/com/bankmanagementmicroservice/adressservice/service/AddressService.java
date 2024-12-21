@@ -36,4 +36,11 @@ public class AddressService {
     public AddressDto addAddress(RequestForCreateAddress request){
         return converter.convert(createNewAddress(request));
     }
+
+    public void deleteAddressById(Long id){
+        if(findAddressById(id)==null){
+            throw new AddressNotFoundException("Address could not found by id : "+id);
+        }
+        addressRepository.deleteById(id);
+    }
 }

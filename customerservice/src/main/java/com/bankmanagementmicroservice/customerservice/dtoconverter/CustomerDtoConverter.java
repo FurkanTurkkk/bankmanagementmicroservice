@@ -1,13 +1,9 @@
 package com.bankmanagementmicroservice.customerservice.dtoconverter;
 
-import com.bankmanagementmicroservice.customerservice.client.AddressServiceClient;
 import com.bankmanagementmicroservice.customerservice.model.Customer;
-import org.example.AccountDto;
 import org.example.AddressDto;
 import org.example.CustomerDto;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class CustomerDtoConverter {

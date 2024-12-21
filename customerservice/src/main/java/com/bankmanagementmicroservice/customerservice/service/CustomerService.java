@@ -1,7 +1,8 @@
 package com.bankmanagementmicroservice.customerservice.service;
 
 
-import com.bankmanagementmicroservice.customerservice.client.AddressServiceClient;
+import com.bankmanagementmicroservice.adressservice.model.Address;
+import com.bankmanagementmicroservice.customerservice.feignclient.AddressServiceFeignClient;
 import com.bankmanagementmicroservice.customerservice.dtoconverter.CustomerDtoConverter;
 import com.bankmanagementmicroservice.customerservice.exception.CustomerExistException;
 import com.bankmanagementmicroservice.customerservice.exception.CustomerNotFoundException;
@@ -9,22 +10,19 @@ import com.bankmanagementmicroservice.customerservice.model.Customer;
 import com.bankmanagementmicroservice.customerservice.repository.CustomerRepository;
 import com.bankmanagementmicroservice.customerservice.request.RequestForCreateCustomer;
 import jakarta.transaction.Transactional;
-import org.example.AccountDto;
 import org.example.AddressDto;
 import org.example.CustomerDto;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final AddressServiceClient addressServiceClient;
+    private final AddressServiceFeignClient addressServiceFeignClient;
 
-    public CustomerService(CustomerRepository customerRepository, AddressServiceClient addressServiceClient) {
+    public CustomerService(CustomerRepository customerRepository, AddressServiceFeignClient addressServiceFeignClient) {
         this.customerRepository = customerRepository;
-        this.addressServiceClient = addressServiceClient;
+        this.addressServiceFeignClient = addressServiceFeignClient;
     }
 
     private Customer createNewCustomer(RequestForCreateCustomer request){
@@ -51,14 +49,31 @@ public class CustomerService {
 
     public CustomerDto getCustomerById(Long id){
         Customer customer=findCustomerById(id);
-        AddressDto addressDto=addressServiceClient.findAddressByAddressId(customer.getAddressId()).getBody();
+        AddressDto addressDto= addressServiceFeignClient.findAddressByAddressId(customer.getAddressId()).getBody();
         return CustomerDtoConverter.convert(customer,addressDto);
     }
 
     @Transactional
     public CustomerDto addCustomer(RequestForCreateCustomer request){
         Customer registeredCustomer=createNewCustomer(request);
-        AddressDto addressDto=addressServiceClient.findAddressByAddressId(request.getAddressId()).getBody();
+        AddressDto addressDto= addressServiceFeignClient.findAddressByAddressId(request.getAddressId()).getBody();
         return CustomerDtoConverter.convert(registeredCustomer,addressDto);
+    }
+
+    @Transactional
+    public CustomerDto updateAddressOfCustomerById(Long customerId,Long addressId){
+        Customer customer=findCustomerById(customerId);
+        customer.updateAddressId(addressId);
+        AddressDto address=addressServiceFeignClient.findAddressByAddressId(addressId).getBody();
+        return CustomerDtoConverter.convert(customer,address);
+    }
+
+    public void deleteCustomerById(Long id){
+        findCustomerById(id);
+        customerRepository.deleteById(id);
+    }
+
+    public void deleteAllCustomer(){
+        customerRepository.deleteAll();
     }
 }

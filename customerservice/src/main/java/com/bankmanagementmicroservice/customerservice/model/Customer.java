@@ -61,17 +61,20 @@ public class Customer {
         return birthDay;
     }
 
+    public void updateAddressId(Long addressId){
+        this.addressId=addressId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
         return Objects.equals(tc, customer.tc)
-                && Objects.equals(addressId, customer.addressId)
                 && Objects.equals(phoneNumber, customer.phoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tc, addressId, phoneNumber);
+        return Objects.hash(tc, phoneNumber);
     }
 }
