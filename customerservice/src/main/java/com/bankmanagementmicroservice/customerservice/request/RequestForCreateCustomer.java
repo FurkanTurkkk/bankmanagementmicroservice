@@ -1,36 +1,33 @@
-package org.example;
+package com.bankmanagementmicroservice.customerservice.request;
+
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-public class CustomerDto {
+@Component
+public class RequestForCreateCustomer {
     private String firstName;
     private String lastName;
     private String tc;
-    private AddressDto addressDto;
+    private Long addressId;
     private LocalDate birthDay;
     private String phoneNumber;
 
-    public CustomerDto() {
+    public RequestForCreateCustomer() {
     }
 
-    public CustomerDto(String firstName,
-                       String lastName,
-                       String tc,
-                       AddressDto addressDto,
-                       LocalDate birthDay,
-                       String phoneNumber) {
+    public RequestForCreateCustomer(String firstName,
+                                    String lastName,
+                                    String tc,
+                                    LocalDate birthDay,
+                                    Long addressId,
+                                    String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.tc = tc;
-        this.addressDto = addressDto;
         this.birthDay = birthDay;
+        this.addressId = addressId;
         this.phoneNumber = phoneNumber;
-    }
-
-    public AddressDto getAddressDto() {
-        return addressDto;
     }
 
     public String getFirstName() {
@@ -45,16 +42,15 @@ public class CustomerDto {
         return tc;
     }
 
-    public AddressDto getAddressId() {
-        return addressDto;
-    }
-
     public LocalDate getBirthDay() {
         return birthDay;
+    }
+
+    public Long getAddressId() {
+        return addressId;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
 }

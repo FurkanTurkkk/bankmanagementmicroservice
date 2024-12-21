@@ -24,6 +24,7 @@
       <module name="addressservice" options="-parameters" />
       <module name="customerservice" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />
+      <module name="shared-dto" options="-parameters" />
       <module name="transactionservice" options="-parameters" />
     </option>
   </component>

@@ -1,21 +1,18 @@
 package com.bankmanagementmicroservice.accountservice.dtoconverter;
 
-import com.bankmanagementmicroservice.accountservice.client.CustomerServiceClient;
-import com.bankmanagementmicroservice.accountservice.dto.AccountDto;
 import com.bankmanagementmicroservice.accountservice.model.Account;
-import com.bankmanagementmicroservice.customerservice.dto.CustomerDto;
+import org.example.AccountDto;
+import org.example.CustomerDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AccountDtoConverter {
-    private final CustomerServiceClient customerServiceClient;
+    private static final Logger log= LoggerFactory.getLogger(AccountDtoConverter.class);
 
-    public AccountDtoConverter(CustomerServiceClient customerServiceClient) {
-        this.customerServiceClient = customerServiceClient;
-    }
-
-    public AccountDto convert(Account account){
-        CustomerDto customerDto=customerServiceClient.findCustomerById(account.getCustomerId()).getBody();
+    public AccountDto convert(Account account, CustomerDto customerDto){
+        log.info("Account dto işleniyor");
         return new AccountDto(
                 customerDto,
                 account.getAccountNumber(),

@@ -1,6 +1,6 @@
-package com.bankmanagementmicroservice.adressservice.exceptionhandler;
+package com.bankmanagementmicroservice.transactionservice.exceptionhandler;
 
-import com.bankmanagementmicroservice.adressservice.exception.AddressNotFoundException;
+import com.bankmanagementmicroservice.transactionservice.exception.TransactionNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(AddressNotFoundException.class)
-    public ResponseEntity<String> handleAddressNotFoundException(AddressNotFoundException e){
+    @ExceptionHandler
+    public ResponseEntity<String> handleTransactionNotFoundException(TransactionNotFoundException e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

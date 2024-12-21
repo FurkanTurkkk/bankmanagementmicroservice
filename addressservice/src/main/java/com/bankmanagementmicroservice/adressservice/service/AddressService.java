@@ -4,6 +4,7 @@ import com.bankmanagementmicroservice.adressservice.dtoconverter.AddressDtoConve
 import com.bankmanagementmicroservice.adressservice.exception.AddressNotFoundException;
 import com.bankmanagementmicroservice.adressservice.model.Address;
 import com.bankmanagementmicroservice.adressservice.repository.AddressRepository;
+import com.bankmanagementmicroservice.adressservice.request.RequestForCreateAddress;
 import org.example.AddressDto;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,12 @@ public class AddressService {
         this.converter = converter;
     }
 
+    private Address createNewAddress(RequestForCreateAddress request){
+        return addressRepository.save(new Address(request.getCity(),request.getStreet(),
+                request.getApartmentNo(),
+                request.getDoorNumber()));
+    }
+
     private Address findAddressById(Long id){
         return addressRepository.findById(id)
                 .orElseThrow(()->new AddressNotFoundException("Address could not found by id : "+id));
@@ -24,5 +31,9 @@ public class AddressService {
 
     public AddressDto getAddressById(Long id){
         return converter.convert(findAddressById(id));
+    }
+
+    public AddressDto addAddress(RequestForCreateAddress request){
+        return converter.convert(createNewAddress(request));
     }
 }

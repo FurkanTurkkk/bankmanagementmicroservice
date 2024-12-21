@@ -7,14 +7,14 @@ import java.math.BigDecimal;
 @Component
 public class RequestForCreateAccount {
     private Long customerId;
-    private BigDecimal balance=BigDecimal.ZERO;
+    private BigDecimal balance;
 
     public RequestForCreateAccount() {
     }
 
-    public RequestForCreateAccount(Long customerId, BigDecimal balance) {
+    public RequestForCreateAccount(Long customerId) {
         this.customerId = customerId;
-        this.balance = balance;
+        this.balance = BigDecimal.ZERO;
     }
 
     public Long getCustomerId() {

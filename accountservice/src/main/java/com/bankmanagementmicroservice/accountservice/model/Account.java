@@ -1,5 +1,6 @@
 package com.bankmanagementmicroservice.accountservice.model;
 
+import com.bankmanagementmicroservice.accountservice.request.RequestForCreateAccount;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -53,10 +54,11 @@ public class Account {
         return accountNumberBuilder.toString();
     }
 
-    protected void increaseBalance(BigDecimal amount){
+    public void increaseBalance(BigDecimal amount){
         this.balance=balance.add(amount);
     }
-    protected void decreaseBalance(BigDecimal amount){
+
+    public void decreaseBalance(BigDecimal amount){
         if(balance.compareTo(amount) >= 0){
             this.balance=balance.subtract(amount);
         }
@@ -64,4 +66,10 @@ public class Account {
             throw new IllegalArgumentException("Yetersiz Bakiye ! ");
         }
     }
+    public void updateAccountInformation(RequestForCreateAccount request){
+        this.customerId=request.getCustomerId();
+        this.balance=request.getBalance();
+    }
+
+
 }

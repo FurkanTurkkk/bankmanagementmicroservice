@@ -2,24 +2,22 @@ package com.bankmanagementmicroservice.customerservice.dtoconverter;
 
 import com.bankmanagementmicroservice.customerservice.client.AddressServiceClient;
 import com.bankmanagementmicroservice.customerservice.model.Customer;
+import org.example.AccountDto;
+import org.example.AddressDto;
 import org.example.CustomerDto;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class CustomerDtoConverter {
-    private final AddressServiceClient addressServiceClient;
 
-    public CustomerDtoConverter(AddressServiceClient addressServiceClient) {
-        this.addressServiceClient = addressServiceClient;
-    }
-
-    public CustomerDto convert(Customer customer){
-        AddressDto addressDto=addressServiceClient.findAddressByAddressId(customer.getAddressId()).getBody();
+    public static CustomerDto convert(Customer customer, AddressDto address){
         return new CustomerDto(
                 customer.getFirstName(),
                 customer.getLastName(),
                 customer.getTc(),
-                addressDto,
+                address,
                 customer.getBirthDay(),
                 customer.getPhoneNumber()
         );

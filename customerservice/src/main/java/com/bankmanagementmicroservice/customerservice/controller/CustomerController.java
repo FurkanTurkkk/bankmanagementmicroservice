@@ -1,12 +1,10 @@
 package com.bankmanagementmicroservice.customerservice.controller;
 
+import com.bankmanagementmicroservice.customerservice.request.RequestForCreateCustomer;
 import com.bankmanagementmicroservice.customerservice.service.CustomerService;
 import org.example.CustomerDto;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/customer")
@@ -16,6 +14,11 @@ public class CustomerController {
 
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
+    }
+
+    @PostMapping
+    public ResponseEntity<CustomerDto> createNewCustomer(@RequestBody RequestForCreateCustomer request){
+        return ResponseEntity.ok(customerService.addCustomer(request));
     }
 
     @GetMapping("/{customerId}")

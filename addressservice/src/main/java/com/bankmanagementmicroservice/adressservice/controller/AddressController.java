@@ -1,12 +1,10 @@
 package com.bankmanagementmicroservice.adressservice.controller;
 
+import com.bankmanagementmicroservice.adressservice.request.RequestForCreateAddress;
 import com.bankmanagementmicroservice.adressservice.service.AddressService;
 import org.example.AddressDto;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/address")
@@ -15,6 +13,11 @@ public class AddressController {
 
     public AddressController(AddressService addressService) {
         this.addressService = addressService;
+    }
+
+    @PostMapping
+    public ResponseEntity<AddressDto> createNewAddress(@RequestBody RequestForCreateAddress request){
+        return ResponseEntity.ok(addressService.addAddress(request));
     }
 
     @GetMapping("/id/{addressId}")
