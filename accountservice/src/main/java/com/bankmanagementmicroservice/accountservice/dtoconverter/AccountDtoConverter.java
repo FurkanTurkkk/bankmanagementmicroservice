@@ -13,10 +13,12 @@ public class AccountDtoConverter {
 
     public AccountDto convert(Account account, CustomerDto customerDto){
         log.info("Account dto işleniyor");
-        return new AccountDto(
+        AccountDto accountDto=new AccountDto(
                 customerDto,
                 account.getAccountNumber(),
                 account.getBalance()
         );
+        accountDto.setAccountId(account.getId());
+        return accountDto;
     }
 }

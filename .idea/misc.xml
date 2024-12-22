@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/addressservice/pom.xml" />
         <option value="$PROJECT_DIR$/untitled/pom.xml" />
         <option value="$PROJECT_DIR$/shared-dto/pom.xml" />
+        <option value="$PROJECT_DIR$/authservice/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

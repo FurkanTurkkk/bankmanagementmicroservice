@@ -1,6 +1,8 @@
 package com.bankmanagementmicroservice.transactionservice.controller;
 
-import com.bankmanagementmicroservice.transactionservice.request.RequestFotCreateTransaction;
+import com.bankmanagementmicroservice.transactionservice.model.TransactionType;
+import com.bankmanagementmicroservice.transactionservice.request.IncreaseRequest;
+import com.bankmanagementmicroservice.transactionservice.request.RequestDecreaseBalance;
 import com.bankmanagementmicroservice.transactionservice.service.TransactionService;
 import org.example.TransactionDto;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +17,16 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @PostMapping
-    public ResponseEntity<TransactionDto> addTransaction(@RequestBody RequestFotCreateTransaction request){
-        return ResponseEntity.ok(transactionService.addNewTransaction(request));
+    @PostMapping("/increase/{transactionType}")
+    public ResponseEntity<TransactionDto> increaseBalance(@PathVariable("transactionType")TransactionType type,
+                                                          @RequestBody IncreaseRequest request){
+        return ResponseEntity.ok(transactionService.increaseBalanceOfAccount(type,request));
     }
-    @GetMapping("/{transactionId}")
-    public ResponseEntity<TransactionDto> getTransaction(@PathVariable("transactionId")Long id){
-        return ResponseEntity.ok(transactionService.getTransactionById(id));
+
+    @PostMapping("/decrease/{transactionType}")
+    public ResponseEntity<TransactionDto> decreaseBalance(@PathVariable("transactionType")TransactionType type,
+                                                          @RequestBody RequestDecreaseBalance request){
+        return ResponseEntity.ok(transactionService.decreaseBalanceOfAccount(type,request));
     }
+
 }

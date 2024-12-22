@@ -19,7 +19,11 @@ public class AddressService {
     }
 
     private Address createNewAddress(RequestForCreateAddress request){
-        return addressRepository.save(new Address(request.getCity(),request.getStreet(),
+        return addressRepository.save(new Address(
+                request.getCountry(),
+                request.getCity(),
+                request.getTown(),
+                request.getStreet(),
                 request.getApartmentNo(),
                 request.getDoorNumber()));
     }

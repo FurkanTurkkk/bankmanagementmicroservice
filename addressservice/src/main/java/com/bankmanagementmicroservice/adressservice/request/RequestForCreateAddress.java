@@ -4,7 +4,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RequestForCreateAddress {
+
+    private String country;
     private String city;
+    private String town;
     private String street;
     private Long apartmentNo;
     private Long doorNumber;
@@ -12,8 +15,13 @@ public class RequestForCreateAddress {
     public RequestForCreateAddress() {
     }
 
-    public RequestForCreateAddress(String city, String street, Long apartmentNo, Long doorNumber) {
+    public RequestForCreateAddress(String country,
+                                   String city,
+                                   String town,
+                                   String street, Long apartmentNo, Long doorNumber) {
+        this.country=country;
         this.city = city;
+        this.town=town;
         this.street = street;
         this.apartmentNo = apartmentNo;
         this.doorNumber = doorNumber;
@@ -34,5 +42,13 @@ public class RequestForCreateAddress {
 
     public Long getDoorNumber() {
         return doorNumber;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getTown() {
+        return town;
     }
 }

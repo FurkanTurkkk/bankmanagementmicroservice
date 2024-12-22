@@ -26,7 +26,8 @@ public class CustomerService {
     }
 
     private Customer createNewCustomer(RequestForCreateCustomer request){
-        if(customerRepository.findByTcAndAddressId(request.getTc(),request.getAddressId()).isPresent()){
+        if(customerRepository.findByTcAndAddressId(request.getTc(),request.getAddressId()).isPresent()
+        || customerRepository.findByTcAndPhoneNumber(request.getTc(),request.getPhoneNumber()).isPresent()){
             throw new CustomerExistException("Customer already exist");
         }else {
             Customer customer=new Customer(

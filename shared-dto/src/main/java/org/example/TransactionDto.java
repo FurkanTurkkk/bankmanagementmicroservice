@@ -20,6 +20,10 @@ public class TransactionDto {
         this.amount=amount;
     }
 
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
     public String getType() {
         return type;
     }

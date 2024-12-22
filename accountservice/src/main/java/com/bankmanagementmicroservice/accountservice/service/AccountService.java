@@ -5,8 +5,8 @@ import com.bankmanagementmicroservice.accountservice.exception.AccountNotCreated
 import com.bankmanagementmicroservice.accountservice.feignclient.CustomerServerFeignClient;
 import com.bankmanagementmicroservice.accountservice.model.Account;
 import com.bankmanagementmicroservice.accountservice.repository.AccountRepository;
+import com.bankmanagementmicroservice.accountservice.request.RequestDecreaseBalance;
 import com.bankmanagementmicroservice.accountservice.request.RequestForCreateAccount;
-import feign.FeignException;
 import jakarta.transaction.Transactional;
 import org.example.AccountDto;
 import org.example.CustomerDto;
@@ -34,7 +34,6 @@ public class AccountService {
         this.customerServerFeignClient = customerServerFeignClient;
     }
 
-
     private Account createNewAccount(RequestForCreateAccount request){
         logger.info("createNewAccount metoda giriş yapıldı");
         Long customerId= request.getCustomerId();
@@ -54,6 +53,15 @@ public class AccountService {
             return accountRepository.findById(id)
                     .orElseThrow(()->new AccountNotFoundException("Account could not found by id : "+id));
         } catch (AccountNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Account findAccountByAccountNumber(String accountNumber){
+        try{
+            return accountRepository.findByAccountNumber(accountNumber)
+                    .orElseThrow(()->new AccountNotFoundException("Bu hesap numarasına ait hesap bulunamadı"+accountNumber));
+        }catch (AccountNotFoundException e){
             throw new RuntimeException(e);
         }
     }
@@ -96,15 +104,24 @@ public class AccountService {
         return converter.convert(account,customerDto);
     }
 
-    public AccountDto decreaseBalanceOfAccountById(Long id,BigDecimal amount){
-        Account account=findAccountById(id);
-        CustomerDto customerDto=customerServerFeignClient.findCustomerById(account.getCustomerId()).getBody();
+    public AccountDto decreaseBalanceOfAccountById(RequestDecreaseBalance request){
+        logger.info("Bakiye düşürme metoduna giriş yapıldı");
+        Account fromAccount=findAccountByAccountNumber(request.getFromAccountNumber());
+        logger.info("Gönderecek hesap bulundu");
+        Account toAccount=findAccountByAccountNumber(request.getToAccountNumber());
+        logger.info("Gönderilen hesap bulundu");
+        CustomerDto fromCustomerDto=customerServerFeignClient.findCustomerById(fromAccount.getCustomerId()).getBody();
+        logger.info("Gönderen hesabın müşterisi bulundu");
+        customerServerFeignClient.findCustomerById(toAccount.getCustomerId());
+        logger.info("Gönderilecek hesabın müşterisi bulundu");
         logger.info("Account servis sınıfında hesap bakiyesi yükseltilecek hesap bulundu");
-        account.decreaseBalance(amount);
+        fromAccount.decreaseBalance(request.getAmount());
+        toAccount.increaseBalance(request.getAmount());
         logger.info("Account servis sınıfında accountun bakiyesi yükseltildi");
-        updateAccount(account);
+        updateAccount(fromAccount);
+        updateAccount(toAccount);
         logger.info("Account servis sınıfında account nesnesi veri tabanında güncellendi");
-        return converter.convert(account,customerDto);
+        return converter.convert(fromAccount,fromCustomerDto);
     }
 
 }

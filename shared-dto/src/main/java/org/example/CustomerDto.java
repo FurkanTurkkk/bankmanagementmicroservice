@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDto {
+    private Long customerId;
     private String firstName;
     private String lastName;
     private String tc;
@@ -27,6 +28,14 @@ public class CustomerDto {
         this.addressDto = addressDto;
         this.birthDay = birthDay;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public AddressDto getAddressDto() {

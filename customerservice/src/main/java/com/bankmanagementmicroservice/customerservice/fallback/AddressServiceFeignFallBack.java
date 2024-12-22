@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 public class AddressServiceFeignFallBack implements AddressServiceFeignClient {
     @Override
     public ResponseEntity<AddressDto> findAddressByAddressId(Long id) {
-        return ResponseEntity.ok(new AddressDto("","",0L,0L));
+        return ResponseEntity.ok(new AddressDto("","","","",0L,0L));
     }
 }

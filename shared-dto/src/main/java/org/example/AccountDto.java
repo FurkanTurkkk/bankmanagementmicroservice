@@ -4,6 +4,7 @@ package org.example;
 import java.math.BigDecimal;
 
 public class AccountDto {
+    private Long accountId;
     private CustomerDto customerDto;
     private String accountNumber;
     private BigDecimal balance;
@@ -26,4 +27,11 @@ public class AccountDto {
         return balance;
     }
 
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
 }
