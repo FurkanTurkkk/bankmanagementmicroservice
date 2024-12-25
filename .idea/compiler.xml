@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="eurekaserver" />
         <module name="transactionservice" />
+        <module name="apigateway" />
         <module name="shared-dto" />
         <module name="authservice" />
         <module name="addressservice" />
@@ -24,6 +25,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="accountservice" options="-parameters" />
       <module name="addressservice" options="-parameters" />
+      <module name="apigateway" options="-parameters" />
       <module name="auth-service" options="-parameters" />
       <module name="authservice" options="-parameters" />
       <module name="customerservice" options="-parameters" />
