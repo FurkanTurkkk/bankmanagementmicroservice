@@ -1,0 +1,58 @@
+server:
+  port: 8080
+
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: account-service
+          uri: lb://account-service
+          predicates:
+            - Path=/api/v1/account/**
+          filters:
+            - name: AuthFilter
+
+        - id: customer-service
+          uri: lb://customer-service
+          predicates:
+            - Path=/api/v1/customer/**
+          filters:
+            - name: AuthFilter
+
+        - id: address-service
+          uri: lb://address-service
+          predicates:
+            - Path=/api/v1/address/**
+          filters:
+            - name: AuthFilter
+
+        - id: transaction-service
+          uri: lb://transaction-service
+          predicates:
+            - Path=/api/v1/transaction/**
+          filters:
+            - name: AuthFilter
+
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/v1/user/**
+
+eureka:
+  client:
+    instance:
+      prefer-ip-address: true
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+jwt:
+  key: dahA4L3KW38Z5lrFJ4y8X990mDNL7W9WnOe5cUA9tOlE2VCOC/R7wc17sgOvT+k8shg3QUONmHTigCI/JasuTusUEM57StIXJtN+uBVoNPFcsm9QsslZI4SOAEfreqHg9bQ/AXl/RuOpLbuUCPHt1xi8pyQQNfqIndg63Icp6sLeTTUS+3uWBQ5d2Q87/jyf/y8lKdJhkXVQ4EPvn8UjN/HKQxgAEeRCzUmMyA3vFKx8tgTu3BTEyyVkE4jxO3rJ4U2fqo0Bwe40VrnwDsJW/AWsgmzx98+F3oOgm0nYyBbibEFdRAtzzXhGwRUPXC3EWNEgulq52kgOG37AaRs74g==
+

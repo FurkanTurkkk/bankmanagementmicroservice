@@ -8,16 +8,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="eurekaserver" />
         <module name="transactionservice" />
-        <module name="apigateway" />
+        <module name="auth-service" />
         <module name="shared-dto" />
-        <module name="authservice" />
         <module name="addressservice" />
+        <module name="api-gateway" />
         <module name="accountservice" />
         <module name="customerservice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="auth-service" target="17" />
+      <module name="apigateway" target="17" />
+      <module name="authservice" target="17" />
       <module name="untitled" target="23" />
     </bytecodeTargetLevel>
   </component>
@@ -25,6 +26,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="accountservice" options="-parameters" />
       <module name="addressservice" options="-parameters" />
+      <module name="api-gateway" options="-parameters" />
       <module name="apigateway" options="-parameters" />
       <module name="auth-service" options="-parameters" />
       <module name="authservice" options="-parameters" />

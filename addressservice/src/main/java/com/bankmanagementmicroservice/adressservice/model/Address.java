@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.Objects;
+
 @Entity
 public class Address {
     @Id
@@ -60,5 +62,22 @@ public class Address {
 
     public String getTown() {
         return town;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(country, address.country)
+                && Objects.equals(city, address.city)
+                && Objects.equals(town, address.town)
+                && Objects.equals(street, address.street)
+                && Objects.equals(apartmentNo, address.apartmentNo)
+                && Objects.equals(doorNumber, address.doorNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(country, city, town, street, apartmentNo, doorNumber);
     }
 }

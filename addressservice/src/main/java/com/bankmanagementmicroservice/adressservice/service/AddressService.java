@@ -8,6 +8,8 @@ import com.bankmanagementmicroservice.adressservice.request.RequestForCreateAddr
 import org.example.AddressDto;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AddressService {
     private final AddressRepository addressRepository;
@@ -19,6 +21,7 @@ public class AddressService {
     }
 
     private Address createNewAddress(RequestForCreateAddress request){
+
         return addressRepository.save(new Address(
                 request.getCountry(),
                 request.getCity(),
@@ -31,6 +34,10 @@ public class AddressService {
     private Address findAddressById(Long id){
         return addressRepository.findById(id)
                 .orElseThrow(()->new AddressNotFoundException("Address could not found by id : "+id));
+    }
+
+    private List<Address> getAllAddress(){
+        return addressRepository.findAll();
     }
 
     public AddressDto getAddressById(Long id){
