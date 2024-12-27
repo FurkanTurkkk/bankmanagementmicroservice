@@ -1,7 +1,6 @@
 package com.bankmanagementmicroservice.customerservice.service;
 
 
-import com.bankmanagementmicroservice.adressservice.model.Address;
 import com.bankmanagementmicroservice.customerservice.feignclient.AddressServiceFeignClient;
 import com.bankmanagementmicroservice.customerservice.dtoconverter.CustomerDtoConverter;
 import com.bankmanagementmicroservice.customerservice.exception.CustomerExistException;

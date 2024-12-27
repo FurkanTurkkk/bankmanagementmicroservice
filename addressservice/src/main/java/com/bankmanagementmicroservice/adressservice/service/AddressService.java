@@ -1,6 +1,7 @@
 package com.bankmanagementmicroservice.adressservice.service;
 
 import com.bankmanagementmicroservice.adressservice.dtoconverter.AddressDtoConverter;
+import com.bankmanagementmicroservice.adressservice.exception.AddressAlreadyExistException;
 import com.bankmanagementmicroservice.adressservice.exception.AddressNotFoundException;
 import com.bankmanagementmicroservice.adressservice.model.Address;
 import com.bankmanagementmicroservice.adressservice.repository.AddressRepository;
@@ -45,6 +46,17 @@ public class AddressService {
     }
 
     public AddressDto addAddress(RequestForCreateAddress request){
+        Address address=new Address(
+                request.getCountry(),
+                request.getCity(),
+                request.getTown(),
+                request.getStreet(),
+                request.getApartmentNo(),
+                request.getDoorNumber()
+        );
+        if(getAllAddress().contains(address)){
+            throw new AddressAlreadyExistException("Address already exist");
+        }
         return converter.convert(createNewAddress(request));
     }
 

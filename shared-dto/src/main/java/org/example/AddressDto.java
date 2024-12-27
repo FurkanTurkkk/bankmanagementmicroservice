@@ -15,7 +15,9 @@ public class AddressDto {
     public AddressDto(String country,
                       String city,
                       String town,
-                      String street, Long apartmentNo, Long doorNumber) {
+                      String street,
+                      Long apartmentNo,
+                      Long doorNumber) {
         this.country=country;
         this.city = city;
         this.town=town;
