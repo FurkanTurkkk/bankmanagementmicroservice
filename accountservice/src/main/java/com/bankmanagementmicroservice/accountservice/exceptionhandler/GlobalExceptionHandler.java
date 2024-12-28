@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import javax.security.auth.login.AccountNotFoundException;
+import com.bankmanagementmicroservice.accountservice.exception.AccountNotFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {

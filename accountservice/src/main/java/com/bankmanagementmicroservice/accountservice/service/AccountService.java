@@ -2,6 +2,7 @@ package com.bankmanagementmicroservice.accountservice.service;
 
 import com.bankmanagementmicroservice.accountservice.dtoconverter.AccountDtoConverter;
 import com.bankmanagementmicroservice.accountservice.exception.AccountNotCreatedException;
+import com.bankmanagementmicroservice.accountservice.exception.AccountNotFoundException;
 import com.bankmanagementmicroservice.accountservice.feignclient.CustomerServerFeignClient;
 import com.bankmanagementmicroservice.accountservice.model.Account;
 import com.bankmanagementmicroservice.accountservice.repository.AccountRepository;
@@ -14,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import javax.security.auth.login.AccountNotFoundException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,12 +49,9 @@ public class AccountService {
                 .orElse(new ArrayList<>());
     }
     private Account findAccountById(Long id){
-        try {
-            return accountRepository.findById(id)
-                    .orElseThrow(()->new AccountNotFoundException("Account could not found by id : "+id));
-        } catch (AccountNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        return accountRepository.findById(id)
+                .orElseThrow(()->new AccountNotFoundException("Account could not found by id : "+id));
+
     }
 
     private Account findAccountByAccountNumber(String accountNumber){
