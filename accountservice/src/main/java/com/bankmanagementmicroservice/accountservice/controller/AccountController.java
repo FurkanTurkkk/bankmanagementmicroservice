@@ -41,6 +41,7 @@ public class AccountController {
         return ResponseEntity.ok(accountService.getAccountById(id));
     }
 
+
     @GetMapping("/all-account-customerId/{customerId}")
     public ResponseEntity<List<AccountDto>> getAllAccountByCustomerId(@PathVariable("customerId")Long customerId){
         return ResponseEntity.ok(accountService.getAllAccount(customerId));

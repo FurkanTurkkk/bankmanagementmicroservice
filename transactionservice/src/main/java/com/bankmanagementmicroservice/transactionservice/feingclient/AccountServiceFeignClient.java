@@ -24,6 +24,4 @@ public interface AccountServiceFeignClient {
     @GetMapping("/api/v1/account/{accountId}")
     ResponseEntity<AccountDto> getAccountByAccountId(@PathVariable("accountId")Long accountId);
 
-    @GetMapping("/api/v1/account/accountNumber/{accountNumber}")
-    ResponseEntity<AccountDto> getAccountByAccountNumber(@PathVariable("accountNumber")String accountNumber);
 }

@@ -88,11 +88,13 @@ public class AccountService {
                 .map(t->converter.convert(t,customerDto)).toList();
     }
 
+    @Transactional
     public void deleteAccountById(Long id){
         Account account=findAccountById(id);
         accountRepository.delete(account);
     }
 
+    @Transactional
     public AccountDto increaseBalanceOfAccountById(Long id, BigDecimal amount){
         Account account=findAccountById(id);
         CustomerDto customerDto=customerServerFeignClient.findCustomerById(account.getCustomerId()).getBody();
@@ -101,6 +103,7 @@ public class AccountService {
         return converter.convert(account,customerDto);
     }
 
+    @Transactional
     public AccountDto decreaseBalanceOfAccountById(RequestDecreaseBalance request){
         logger.info("Bakiye düşürme metoduna giriş yapıldı");
         Account fromAccount=findAccountByAccountNumber(request.getFromAccountNumber());

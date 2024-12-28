@@ -45,8 +45,7 @@ public class TransactionService {
 
     @Transactional
     public TransactionDto decreaseBalanceOfAccount(TransactionType type, RequestDecreaseBalance request){
-        accountServiceFeignClient.decreaseAccountBalance(request);
-        AccountDto accountDto=accountServiceFeignClient.getAccountByAccountNumber(request.getFromAccountNumber()).getBody();
+        AccountDto accountDto=accountServiceFeignClient.decreaseAccountBalance(request).getBody();
         Transaction transaction=createTransaction(new Transaction(LocalDate.now(),
                 accountDto.getAccountId(),
                 request.getAmount(),
